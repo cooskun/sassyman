@@ -1,0 +1,7 @@
+@import 'size';
+
+@mixin circle($size, $color) {
+  @include size($size);
+  border-radius: 50%;
+  background-color: $color;
+}

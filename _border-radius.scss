@@ -1,0 +1,42 @@
+@mixin borderTopRadius($radius) {
+  border-top-left-radius: $radius;
+  border-top-right-radius: $radius;
+}
+
+@mixin borderBottomRadius($radius) {
+  border-bottom-left-radius: $radius;
+  border-bottom-right-radius: $radius;
+}
+
+@mixin borderLeftRadius($radius) {
+  border-top-left-radius: $radius;
+  border-bottom-left-radius: $radius;
+}
+
+@mixin borderRightRadius($radius) {
+  border-top-right-radius: $radius;
+  border-bottom-right-radius: $radius;
+}
+
+@mixin borderCrossRadius($radius, $from: 'left') {
+  @if $from == 'right' {
+    border-top-right-radius: $radius;
+    border-bottom-left-radius: $radius;
+  } @else {
+    border-top-left-radius: $radius;
+    border-bottom-right-radius: $radius;
+  }
+}
+
+@mixin shortBorderRadius($radiuses) {
+  $corners: 'top-left', 'top-right', 'bottom-right', 'bottom-left';
+
+  @for $i from 1 through length($radiuses) {
+    $corner: nth($corners, $i);
+    $radius: nth($radiuses, $i);
+
+    @if $radius != _ {
+      border-#{$corner}-radius: $radius;
+    }
+  }
+}

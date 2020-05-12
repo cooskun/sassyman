@@ -1,0 +1,4 @@
+@mixin preserve3D($perspective: 1000px) {
+  perspective: $perspective;
+  transform-style: preserve-3d;
+}
