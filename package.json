@@ -1,0 +1,19 @@
+{
+  "name": "sassyman",
+  "version": "0.0.0",
+  "description": "Sassy but a sweatheart library",
+  "main": "index.scss",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cooskun/sassyman.git"
+  },
+  "author": "Coskun Baris",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cooskun/sassyman/issues"
+  },
+  "homepage": "https://github.com/cooskun/sassyman#readme"
+}
