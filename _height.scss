@@ -1,0 +1,13 @@
+@mixin height($values) {
+  $props: height min-height max-height;
+
+  $i: 1;
+
+  @each $value in $values {
+    @if $value != _ {
+      #{nth($props, $i)}: $value;
+    }
+
+    $i: $i + 1;
+  }
+}

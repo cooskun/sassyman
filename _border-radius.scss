@@ -28,7 +28,7 @@
   }
 }
 
-@mixin shortBorderRadius($radiuses) {
+@mixin borderRadius($radiuses) {
   $corners: 'top-left', 'top-right', 'bottom-right', 'bottom-left';
 
   @for $i from 1 through length($radiuses) {

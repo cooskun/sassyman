@@ -1,0 +1,13 @@
+@mixin width($values) {
+  $props: width min-width max-width;
+
+  $i: 1;
+
+  @each $value in $values {
+    @if $value != _ {
+      #{nth($props, $i)}: $value;
+    }
+
+    $i: $i + 1;
+  }
+}
