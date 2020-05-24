@@ -1,0 +1,16 @@
+@mixin breakpoint($val1, $val2) {
+  $min: min($val1, $val2);
+  $max: max($val1, $val2);
+
+  @if unitless($min) {
+    $min: $min * 1px;
+  }
+
+  @if unitless($max) {
+    $max: $max * 1px;
+  }
+
+  @media (min-width: $min) and (max-width: $max) {
+    @content;
+  }
+}

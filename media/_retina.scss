@@ -1,0 +1,12 @@
+@mixin retina($helper: null) {
+  $tail: 'only screen and (-webkit-min-device-pixel-ratio: 1.25) #{$helper}',
+    'only screen and ( min--moz-device-pixel-ratio: 1.25) #{$helper}',
+    'only screen and ( -o-min-device-pixel-ratio: 1.25/1) #{$helper}',
+    'only screen and ( min-device-pixel-ratio: 1.25) #{$helper}',
+    'only screen and ( min-resolution: 200dpi) #{$helper}',
+    'only screen and ( min-resolution: 1.25dppx) #{$helper}';
+
+  @media #{$tail} {
+    @content;
+  }
+}

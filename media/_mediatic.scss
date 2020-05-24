@@ -1,0 +1,114 @@
+$mediatic-default: (
+  sm: 568px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+) !default;
+
+@mixin mediatic-setup($config) {
+  $mediatic-custom: map-merge($mediatic-default, $config) !global;
+}
+
+@mixin mediatic-extend($extend) {
+  @if global-variable-exists(mediatic-extend) {
+    $mediatic-extend: map-merge($mediatic-extend, $extend);
+  } @else {
+    $mediatic-extend: map-merge((), $extend) !global;
+  }
+}
+
+@mixin mediatic($queries) {
+  $tail: '' !default;
+
+  $sm: '' !default;
+  $md: '' !default;
+  $lg: '' !default;
+  $xl: '' !default;
+
+  @if global-variable-exists(mediatic-custom) {
+    $sm: map-get($mediatic-custom, sm);
+    $md: map-get($mediatic-custom, md);
+    $lg: map-get($mediatic-custom, lg);
+    $xl: map-get($mediatic-custom, xl);
+  } @else {
+    $sm: map-get($mediatic-default, sm);
+    $md: map-get($mediatic-default, md);
+    $lg: map-get($mediatic-default, lg);
+    $xl: map-get($mediatic-default, xl);
+  }
+
+  $mediatic-items: (
+    all: 'all',
+    print: 'print',
+    screen: 'screen',
+    speech: 'speech',
+    'sm>': '(min-width: #{$sm})',
+    'md>': '(min-width: #{$md})',
+    'lg>': '(min-width: #{$lg})',
+    'xl>': '(min-width: #{$xl})',
+    '<sm': '(max-width: #{$sm - 1px})',
+    '<md': '(max-width: #{$md - 1px})',
+    '<lg': '(max-width: #{$lg - 1px})',
+    '<xl': '(max-width: #{$xl - 1px})',
+    sm: '(min-width: #{$sm}) and (max-width: #{$md - 1px})',
+    md: '(min-width: #{$md}) and (max-width: #{$lg - 1px})',
+    lg: '(min-width: #{$lg}) and (max-width: #{$xl - 1px})',
+    portrait: '(orientation: portrait)',
+    landscape: '(orientation: landscape)',
+    dark: '(prefers-color-scheme: dark)',
+    light: '(prefers-color-scheme: light)',
+    '1:1': '(aspect-ratio: 1/1)',
+    '4:3': '(aspect-ratio: 4/3)',
+    '16:9': '(aspect-ratio: 16/9)',
+  ) !default;
+
+  @if global-variable-exists(mediatic-extend) {
+    $mediatic-items: map-merge($mediatic-items, $mediatic-extend);
+  }
+
+  @if $queries != null {
+    $new-query: false !default;
+
+    @each $query in $queries {
+      $extended-query: '' !default;
+
+      @if map-has-key($mediatic-items, $query) {
+        $extended-query: map-get($mediatic-items, $query);
+
+        @if $tail == '' {
+          // Tail empty, start to fill
+          $tail: $extended-query;
+        } @else {
+          // Tail is not empty
+
+          // If new query, merge query and tail with comma
+          @if $new-query {
+            $tail: '#{$tail}, #{$extended-query}';
+            $new-query: false;
+          }
+
+          // Otherwise, merge with and
+          @else {
+            $tail: '#{$tail} and #{$extended-query}';
+          }
+        }
+      }
+
+      // New query requested,
+      // in next loop query will be added next to 'comma' instead of 'and'
+      @if $query == 'or' {
+        $new-query: true;
+      }
+    }
+
+    // Render the final tail
+    @media #{$tail} {
+      @content;
+    }
+  }
+
+  // Queries parameter not set, render the code without media-query
+  @else {
+    @content;
+  }
+}
