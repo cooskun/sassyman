@@ -1,0 +1,46 @@
+@mixin position($method, $values, $z: null) {
+  // Define valid positions
+  $valid-positions: (top, right, bottom, left);
+
+  // Detect shortands and convert them to four value
+  @if length($values) == 1 {
+    $values: $values $values $values $values;
+  } @else if length($values) == 2 {
+    $values: nth($values, 1) nth($values, 2) nth($values, 1) nth($values, 2);
+  } @else if length($values) == 3 {
+    $values: nth($values, 1) nth($values, 2) nth($values, 3) nth($values, 2);
+  } @else {
+    $values: nth($values, 1) nth($values, 2) nth($values, 3) nth($values, 4);
+  }
+
+  // Output position type
+  position: unquote($method);
+
+  // Output positions
+  // Loop anchors
+  $iterator: 0;
+  @each $position in $valid-positions {
+    $iterator: $iterator + 1;
+
+    // Fetch to position value in values parameter
+    $value: nth($values, $iterator);
+
+    // If value is not underscore, output position
+    // Underscore is an escape charachter
+    @if type-of($value) == 'number' {
+      #{$position}: $value;
+    }
+  }
+}
+
+@mixin absolute($values, $z: null) {
+  @include position(absolute, $values, $z);
+}
+
+@mixin relative($values, $z: null) {
+  @include position(relative, $values, $z);
+}
+
+@mixin fixed($values, $z: null) {
+  @include position(fixed, $values, $z);
+}
