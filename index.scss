@@ -1,28 +1,26 @@
-/* 
-* Syntax Shorters
-*/
+/* Syntax Shorters */
 @import 'size';
 @import 'width';
 @import 'height';
-@import 'sticky';
 @import 'border-radius';
 
-/*
-* Line shorters
-*/
+/* Line shorters */
 @import 'circle';
 @import 'flexbox';
 @import 'container';
 @import 'preserve-3D';
 
-/*
-* Media Queries
-*/
+/* Media Queries */
 @import 'media/breakpoint';
 @import 'media/mediatic';
 @import 'media/retina';
 
-/*
-* Typography
-*/
+/* Typography */
 @import 'locksize';
+
+/* Browser Specific */
+@import 'browser/firefox';
+
+/* Position */
+@import 'position/position';
+@import 'position/sticky';
