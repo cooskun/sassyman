@@ -1,0 +1,20 @@
+@function locksize($font-min, $font-max, $vw-min, $vw-max) {
+  $vw-increase: $vw-max - $vw-min;
+  $font-increase: $font-max - $font-min;
+
+  @if unit($vw-increase) == 'px' {
+    $vw-increase: $vw-increase / 1px;
+  } @else if unit($vw-increase) == 'rem' {
+    $vw-increase: $vw-increase / 1rem;
+  }
+
+  @if unit($font-increase) == 'px' {
+    $font-increase: $font-increase / 1px;
+  } @else if unit($font-increase) == 'rem' {
+    $font-increase: $font-increase / 1rem;
+  }
+
+  @return calc(
+    #{$font-min} + #{$font-increase} * ((100vw - #{$vw-min}) / #{$vw-increase})
+  );
+}

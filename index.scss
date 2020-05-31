@@ -2,12 +2,16 @@
 * Syntax Shorters
 */
 @import 'size';
+@import 'width';
+@import 'height';
+@import 'sticky';
 @import 'border-radius';
 
 /*
 * Line shorters
 */
 @import 'circle';
+@import 'flexbox';
 @import 'container';
 @import 'preserve-3D';
 
@@ -17,3 +21,8 @@
 @import 'media/breakpoint';
 @import 'media/mediatic';
 @import 'media/retina';
+
+/*
+* Typography
+*/
+@import 'locksize';
