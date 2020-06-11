@@ -1,6 +1,6 @@
 {
   "name": "sassyman",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Sassy but a sweatheart library",
   "main": "index.scss",
   "scripts": {
