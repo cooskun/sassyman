@@ -1,5 +1,5 @@
-@mixin firefox($url: null) {
-  @-moz-document url-prefix(#{$url}) {
+@mixin firefox() {
+  @-moz-document url-prefix() {
     @content;
   }
 }
