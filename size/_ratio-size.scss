@@ -1,0 +1,5 @@
+@mixin ratioSize($width: 100%, $height: $width) {
+  width: $width;
+  height: 0;
+  padding-bottom: $height;
+}

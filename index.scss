@@ -1,7 +1,8 @@
 /* Syntax Shorters */
-@import 'size';
 @import 'width';
 @import 'height';
+@import 'size/size';
+@import 'size/ratio-size';
 @import 'border-radius';
 
 /* Line shorters */
